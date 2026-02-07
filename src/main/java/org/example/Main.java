@@ -13,7 +13,11 @@ public class Main {
         c.setCourseID("INTEPROG");
         c.setProgram("BSIT/CS");
         c.setCourseName("Integrative Program");
-        System.out.println(p);
-        System.out.println(c);
+
+
+        p.displayStudent();
+        c.displayCourse();
+        ;
+
     }
 }

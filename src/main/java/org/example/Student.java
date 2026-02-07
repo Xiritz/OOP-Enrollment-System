@@ -44,4 +44,10 @@ public class Student {
                 ", program='" + program + '\'' +
                 '}';
     }
+
+    public void displayStudent(){
+        System.out.println("Student ID: " + getStudentID());
+        System.out.println("Student Name: " + getStudentName());
+        System.out.println("Student Program: " + getProgram());
+    }
 }

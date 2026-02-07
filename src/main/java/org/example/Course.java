@@ -48,4 +48,10 @@ public class Course {
                 ", program='" + program + '\'' +
                 '}';
     }
+
+    public void displayCourse(){
+        System.out.println("Course ID: " + getCourseID());
+        System.out.println("Course Name: " + getCourseName());
+        System.out.println("Course Program: " + getProgram());
+    }
 }
