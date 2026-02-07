@@ -16,6 +16,7 @@ public class Main {
 
 
         p.displayStudent();
+        System.out.println();
         c.displayCourse();
         ;
 
