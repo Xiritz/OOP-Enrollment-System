@@ -1,6 +1,6 @@
 package org.example.model;
 
-public class Student {
+public class Student{
     private String studentID, studentName, program;
 
     public Student(){
