@@ -15,9 +15,7 @@ public class Main {
         c.setCourseName("Integrative Program");
 
 
-        p.displayStudent();
-        System.out.println();
-        c.displayCourse();
+
         ;
 
     }
