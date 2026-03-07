@@ -29,7 +29,7 @@ public class CourseRegistration {
     }
 
     public void display(){
-        for(int i=0;i<courses.size();i++){
+            for(int i=0;i<courses.size();i++){
             System.out.println(courses.get(i));
         }
     }

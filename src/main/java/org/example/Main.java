@@ -1,16 +1,13 @@
 package org.example;
 
-import org.example.model.Course;
-import org.example.model.Student;
+import org.example.model.*;
+
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Student p = new Student();
-        p.setStudentName("John");
-        p.setStudentID("0987654321");
-        p.setProgram("BSIT");
+        Person p = new Student(1234,"John Doe", "Computer Science");
 
         Course c = new Course();
         c.setCourseID("INTEPROG");
