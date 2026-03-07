@@ -1,5 +1,5 @@
 package org.example.service;
-import org.example.model.Student;
+import org.example.model.*;
 
 import java.util.*;
 
@@ -17,14 +17,14 @@ public class StudentRegistration {
             }
 
             System.out.print("Enter student ID: ");
-            String studentID = scn.nextLine();
+            int studentID = scn.nextInt();
             scn.nextLine();
 
             System.out.print("Enter student program: ");
             String program = scn.nextLine();
 
 
-            studentList.add(new Student(studentID, studentName, program));
+                studentList.add(new Student(studentID, studentName, program));
         }
     }
 
@@ -36,7 +36,7 @@ public class StudentRegistration {
 
     public void updateStudent(Student student){
         for (int i=0;i< studentList.size();i++){
-            if (studentList.get(i).getStudentID() == (student.getStudentID())){
+            if (studentList.get(i).getId() == (student.getId())){
                 System.out.print("Enter Name: ");
                 String name = scn.nextLine();
 
@@ -44,7 +44,7 @@ public class StudentRegistration {
                 String program = scn.nextLine();
 
 
-                studentList.set(i, new Student(student.getStudentID(), name, program));
+                studentList.set(i, new Student(student.getId(), name, program));
                 break;
             }
         }
@@ -52,7 +52,7 @@ public class StudentRegistration {
 
     public void removeStudent(Student student){
         for (int i=0;i< studentList.size();i++) {
-            if (studentList.get(i).getStudentID() == (student.getStudentID())) {
+            if (studentList.get(i).getId() == (student.getId())) {
                 studentList.remove(i);
             }
         }
