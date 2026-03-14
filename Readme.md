@@ -18,7 +18,11 @@ Person: ![Screenshot 2026-03-07 120320.png](src/main/resources/Images/Screenshot
 Student: ![Screenshot 2026-03-07 120807.png](src/main/resources/Images/Screenshot%202026-03-07%20120807.png)
 Instructor: ![Screenshot 2026-03-07 120547.png](src/main/resources/Images/Screenshot%202026-03-07%20120547.png)
 
+
 Abstraction:
-Person:
-Student:
-Instructor:
+
+Person:![img_1.png](img_1.png)
+
+Student:![img.png](img.png)
+
+Instructor:![img_2.png](img_2.png)

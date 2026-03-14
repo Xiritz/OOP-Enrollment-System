@@ -19,3 +19,5 @@ public class Instructor extends Person {
         System.out.println("Teaches");
     }
 }
+
+
