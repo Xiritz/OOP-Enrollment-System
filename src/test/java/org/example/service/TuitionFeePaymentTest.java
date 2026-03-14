@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TuitionFeePaymentTest {
-    private TuitionFeePayment tuitionfee;
+    private TuitionFeePayment tuitionfee;  
     @BeforeEach
     void setUp(){
     tuitionfee = new TuitionFeePayment();

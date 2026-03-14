@@ -17,3 +17,8 @@ Inheritance Proof:
 Person: ![Screenshot 2026-03-07 120320.png](src/main/resources/Images/Screenshot%202026-03-07%20120320.png)
 Student: ![Screenshot 2026-03-07 120807.png](src/main/resources/Images/Screenshot%202026-03-07%20120807.png)
 Instructor: ![Screenshot 2026-03-07 120547.png](src/main/resources/Images/Screenshot%202026-03-07%20120547.png)
+
+Abstraction:
+Person:
+Student:
+Instructor:

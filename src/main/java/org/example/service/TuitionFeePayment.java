@@ -1,18 +1,18 @@
 package org.example.service;
 
 public class TuitionFeePayment {
-    private double pricePerUnit = 1000.00;
+    private final double PRICE_PER_UNIT = 1000.00;
     private double balance;
     private double totalTuition;
 
     public double calculateTuitionFee(int units,double discountRate){
         if (discountRate !=0){
-            double discountPrice = (units*pricePerUnit)*discountRate;
-            totalTuition = (units*pricePerUnit) - discountPrice;
+            double discountPrice = (units*PRICE_PER_UNIT)*discountRate;
+            totalTuition = (units*PRICE_PER_UNIT) - discountPrice;
             balance = totalTuition;
             return totalTuition;
         } else{
-            totalTuition = (units*pricePerUnit);
+            totalTuition = (units*PRICE_PER_UNIT);
             balance = totalTuition;
             return totalTuition;
         }
