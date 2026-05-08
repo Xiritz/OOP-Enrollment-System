@@ -1,8 +1,8 @@
 package org.example.service;
 
 public interface TuitionFeePaymentService {
-    double calculateTuitionFee(int units, double discountRate);
-    void makePayment(double amount);
-    double getRemainingBalance();
-    boolean isFullyPaid();
+    double calculateTuitionFee(String studentId, int units, double discountRate);
+    void makePayment(String studentId, double amount);
+    double getRemainingBalance(String studentId);
+    boolean isFullyPaid(String studentId);
 }

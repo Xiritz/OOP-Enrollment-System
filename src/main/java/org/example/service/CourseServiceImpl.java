@@ -6,66 +6,61 @@ import java.util.*;
 public class CourseServiceImpl implements CourseService {
     List<Course> courses = new ArrayList<>();
     Scanner scn = new Scanner(System.in);
-    public void save(){
-        while(true){
-            System.out.print("Enter course name: ");
-            String courseName = scn.nextLine();
 
-            if(courseName.equals("EXIT")){
+    @Override
+    public void saveCourse(Course course) {
+        boolean exists = false;
+        for (Course c : courses) {
+            if (c.getCourseID().equals(course.getCourseID())) {
+                exists = true;
                 break;
             }
+        }
 
-            System.out.print("Enter course ID: ");
-            String courseID = scn.nextLine();
-            scn.nextLine();
-
-            System.out.print("Enter program: ");
-            String program = scn.nextLine();
-
-
-
-            courses.add(new Course(courseID, courseName, program));
+        if (exists) {
+            System.out.println("Course ID already exists!");
+        } else {
+            courses.add(course);
         }
     }
 
-    public void display(){
-        for(int i=0;i<courses.size();i++){
-            System.out.println(courses.get(i));
-        }
+    @Override
+    public List<Course> getAllCourses() {
+        return courses;
     }
 
-    public void updateCourse(Course course){
-        for (int i=0;i< courses.size();i++){
-            if (courses.get(i).getCourseID().equals(course.getCourseID())){
+    @Override
+    public void updateCourse(Course course) {
+        boolean found = false;
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getCourseID().equals(course.getCourseID())) {
                 System.out.print("Enter Name: ");
                 String name = scn.nextLine();
 
                 System.out.print("Enter Program: ");
                 String program = scn.nextLine();
 
-
                 courses.set(i, new Course(course.getCourseID(), name, program));
+                System.out.println("Course updated successfully.");
+                found = true;
                 break;
             }
+        }
+        if (!found) {
+            System.out.println("Course not found.");
         }
     }
 
-    public void removeCourse(){
-        System.out.print("Enter Course ID to remove: ");
-        String courseID = scn.nextLine();
-
-        boolean removed = false;
-        for (int i=0; i < courses.size(); i++) {
-            if (courses.get(i).getCourseID().equals(courseID)) {
+    @Override
+    public boolean removeCourse(String courseId) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getCourseID().equals(courseId)) {
                 courses.remove(i);
                 System.out.println("Course removed successfully.");
-                removed = true;
-                break;
+                return true;
             }
         }
-
-        if (!removed) {
-            System.out.println("Course not found.");
-        }
+        System.out.println("Course not found.");
+        return false;
     }
 }

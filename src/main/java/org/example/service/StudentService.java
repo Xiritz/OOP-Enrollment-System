@@ -1,10 +1,11 @@
 package org.example.service;
 
 import org.example.model.Student;
+import java.util.List;
 
 public interface StudentService {
     void saveStudent(Student student);
-    void displayAllStudent();
+    List<Student> getAllStudents();
     void updateStudent(Student student);
-    void removeStudent(Student student);
+    void removeStudent(String studentId);
 }

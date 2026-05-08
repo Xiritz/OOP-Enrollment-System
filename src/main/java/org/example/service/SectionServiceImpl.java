@@ -6,50 +6,65 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SectionServiceImpl implements SectionService{
-    private List<Section> sections = new ArrayList();
+    private List<Section> sections = new ArrayList<>();
 
     @Override
-    public void addSection(String name, Course course) {
-        Section newSection = new Section(name, 0);
-        newSection.addCourse(course);
-        sections.add(newSection);
+    public void addSection(Section section) {
+        boolean exists = false;
+        for (Section s : sections) {
+            if (s.getSectionName().equals(section.getSectionName())) {
+                exists = true;
+                break;
+            }
+        }
+
+        if (exists) {
+            System.out.println("Section name already exists!");
+        } else {
+            sections.add(section);
+        }
     }
 
     @Override
-    public void deleteSection(int sectionIndex) {
-        sections.remove(sectionIndex);
+    public List<Section> getAllSections() {
+        return sections;
+    }
+
+    @Override
+    public void deleteSection(String sectionName) {
+        boolean removed = false;
+        for (int i = 0; i < sections.size(); i++) {
+            if (sections.get(i).getSectionName().equals(sectionName)) {
+                sections.remove(i);
+                System.out.println("Section removed successfully.");
+                removed = true;
+                break;
+            }
+        }
+        if (!removed) {
+            System.out.println("Section not found.");
+        }
     }
 
     @Override
     public void assignStudentToSection(Student student, Section section) {
-        if (section.getCurrentCapacity() == 30){
+        if (section.getCurrentCapacity() >= 30){
             System.out.println("Section is full! Cannot enroll " + student.getName());
+            return;
         }
 
         if (section.equals(student.getSectionEnrolled())){
             System.out.println("Student is already enrolled in this section!");
+            return;
         }
 
         student.setSectionEnrolled(section);
         section.setCurrentCapacity(section.getCurrentCapacity() + 1);
+        System.out.println("Student " + student.getName() + " enrolled in " + section.getSectionName());
     }
 
     @Override
     public void assignCourseToSection(Course course, Section section) {
         section.addCourse(course);
-    }
-
-    @Override
-    public void getSectionDetails() {
-        for (Section section : sections) {
-            System.out.println("Section: " + section.getSectionName());
-            System.out.println("Current Capacity: " + section.getCurrentCapacity() + "/30");
-            System.out.println("Courses:");
-            for (Course course : section.getCourses()) {
-                String instructorName = (course.getInstructor() != null) ? course.getInstructor().getName() : "No instructor assigned";
-                System.out.println("  - " + course.getCourseName() + " (ID: " + course.getCourseID() + ") | Instructor: " + instructorName);
-            }
-            System.out.println("---------------------------");
-        }
     }
 }
