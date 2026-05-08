@@ -6,14 +6,30 @@ public class Course {
     private String courseID;
     private String courseName;
     private String program;
+    private Instructor instructor;
+    private Section assignedSection;
 
     public Course(){
 
     }
+
     public Course(String courseID, String courseName, String program){
         this.courseID = courseID;
         this.courseName = courseName;
         this.program = program;
+    }
+
+    public Course(String courseID, String courseName, String program, Instructor instructor){
+        this.courseID = courseID;
+        this.courseName = courseName;
+        this.program = program;
+        this.instructor = instructor;
+    }
+
+
+    public Course(String courseID, String courseName, String program, Instructor instructor, Section assignedSection){
+        this(courseID, courseName, program, instructor);
+        this.assignedSection = assignedSection;
     }
 
     public String getCourseID(){
@@ -38,6 +54,14 @@ public class Course {
 
     public void setProgram(String program){
         this.program = program;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     @Override

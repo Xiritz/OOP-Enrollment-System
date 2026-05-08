@@ -3,8 +3,8 @@ import org.example.model.*;
 
 import java.util.*;
 
-public class StudentRegistrationImpl implements StudentRegistration {
-    ArrayList<Student> studentList = new ArrayList();
+public class StudentServiceImpl implements StudentService {
+    List<Student> studentList = new ArrayList<>();
     Scanner scn = new Scanner(System.in);
 
     public void saveStudent(Student students){
@@ -17,7 +17,7 @@ public class StudentRegistrationImpl implements StudentRegistration {
             }
 
             System.out.print("Enter student ID: ");
-            int studentID = scn.nextInt();
+            String studentID = scn.nextLine();
             scn.nextLine();
 
             System.out.print("Enter student program: ");

@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TuitionFeePaymentTest {
-    private TuitionFeePaymentImpl tuitionfee;
+    private TuitionFeePaymentServiceImpl tuitionfee;
     @BeforeEach
     void setUp(){
-    tuitionfee = new TuitionFeePaymentImpl();
+    tuitionfee = new TuitionFeePaymentServiceImpl();
     }
 
     @Test
