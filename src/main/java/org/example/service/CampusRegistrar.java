@@ -25,27 +25,27 @@ public class CampusRegistrar {
     public void saveStudent(Student student){
         studentService.saveStudent(student);
     }
-    public void displayAllStudent(){
-        studentService.displayAllStudent();
+    public List<Student> getAllStudents(){
+        return studentService.getAllStudents();
     }
     public void updateStudent(Student student){
         studentService.updateStudent(student);
     }
-    public void removeStudent(Student student){
-        studentService.removeStudent(student);
+    public void removeStudent(String studentId){
+        studentService.removeStudent(studentId);
     }
 
-    public void save(){
-        courseReg.save();
+    public void saveCourse(Course course){
+        courseReg.saveCourse(course);
     }
-    public void display(){
-        courseReg.display();
+    public List<Course> getAllCourses(){
+        return courseReg.getAllCourses();
     }
     public void updateCourse(Course course){
         courseReg.updateCourse(course);
     }
-    public void removeCourse(){
-        courseReg.removeCourse();
+    public void removeCourse(String courseId){
+        courseReg.removeCourse(courseId);
     }
 
     public void addInstrutor(String id, String name, List<Course> courses){
@@ -58,11 +58,11 @@ public class CampusRegistrar {
         instructorService.getInstructorDetails(instructor);
     }
 
-    public void addSection(String name, Course course){
-        sectionService.addSection(name, course);
+    public void addSection(Section section){
+        sectionService.addSection(section);
     }
-    public void deleteSection(int sectionIndex){
-        sectionService.deleteSection(sectionIndex);
+    public void deleteSection(String sectionName){
+        sectionService.deleteSection(sectionName);
     }
     public void assignStudentToSection(Student student, Section section){
         sectionService.assignStudentToSection(student, section);
@@ -70,18 +70,18 @@ public class CampusRegistrar {
     public void assignCourseToSection(Course course, Section section) {
         sectionService.assignCourseToSection(course, section);
     }
-    public void getSectionDetails(){
-        sectionService.getSectionDetails();
+    public List<Section> getAllSections(){
+        return sectionService.getAllSections();
     }
 
     public void createDepartment(String id, String departmentName) {
         departmentService.createDepartment(id, departmentName);
     }
-    public void displayDepartment() {
-        departmentService.displayDepartment();
+    public List<Department> getAllDepartments() {
+        return departmentService.getAllDepartments();
     }
-    public void removeDepartment() {
-        departmentService.removeDepartment();
+    public void removeDepartment(String id) {
+        departmentService.removeDepartment(id);
     }
     public void addInstructorToDepartment(String departmentId, Instructor instructor) {
         departmentService.addInstructorToDepartment(departmentId, instructor);

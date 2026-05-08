@@ -6,29 +6,34 @@ import org.example.model.Instructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class DepartmentServiceImpl implements DepartmentService {
     private List<Department> departmentList = new ArrayList<>();
-    private Scanner scn = new Scanner(System.in);
 
     @Override
     public void createDepartment(String id, String departmentName) {
-        departmentList.add(new Department(id, departmentName));
-    }
+        boolean exists = false;
+        for (Department dept : departmentList) {
+            if (dept.getId().equals(id)) {
+                exists = true;
+                break;
+            }
+        }
 
-    @Override
-    public void displayDepartment() {
-        for (int i = 0; i < departmentList.size(); i++) {
-            System.out.println(departmentList.get(i));
+        if (exists) {
+            System.out.println("Department ID already exists!");
+        } else {
+            departmentList.add(new Department(id, departmentName));
         }
     }
 
     @Override
-    public void removeDepartment() {
-        System.out.print("Enter Department ID to remove: ");
-        String id = scn.nextLine();
+    public List<Department> getAllDepartments() {
+        return departmentList;
+    }
 
+    @Override
+    public void removeDepartment(String id) {
         boolean removed = false;
         for (int i = 0; i < departmentList.size(); i++) {
             if (departmentList.get(i).getId().equals(id)) {
@@ -46,21 +51,31 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void addInstructorToDepartment(String departmentId, Instructor instructor) {
+        boolean found = false;
         for (int i = 0; i < departmentList.size(); i++) {
             if (departmentList.get(i).getId().equals(departmentId)) {
                 departmentList.get(i).getInstructors().add(instructor);
+                found = true;
                 break;
             }
+        }
+        if (!found) {
+            System.out.println("Department not found: " + departmentId);
         }
     }
 
     @Override
     public void addCourseToDepartment(String departmentId, Course course) {
+        boolean found = false;
         for (int i = 0; i < departmentList.size(); i++) {
             if (departmentList.get(i).getId().equals(departmentId)) {
                 departmentList.get(i).getCourses().add(course);
+                found = true;
                 break;
             }
+        }
+        if (!found) {
+            System.out.println("Department not found: " + departmentId);
         }
     }
 
