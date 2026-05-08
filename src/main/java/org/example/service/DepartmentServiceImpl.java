@@ -21,7 +21,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
 
         if (exists) {
-            System.out.println("Department ID already exists!");
+            System.out.println("Department ID already exists! ");
         } else {
             departmentList.add(new Department(id, departmentName));
         }
