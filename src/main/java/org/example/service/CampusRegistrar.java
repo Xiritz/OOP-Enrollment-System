@@ -10,13 +10,15 @@ public class CampusRegistrar {
     private InstructorService instructorService;
     private SectionService sectionService;
     private DepartmentService departmentService;
+    private TuitionFeePaymentService tuitionService;
 
-    public CampusRegistrar(StudentService studentReg, CourseService courseReg, InstructorService instructorServ, SectionService secService, DepartmentService deptService){
+    public CampusRegistrar(StudentService studentReg, CourseService courseReg, InstructorService instructorServ, SectionService secService, DepartmentService deptService, TuitionFeePaymentService tuitionServ){
         this.studentService = studentReg;
         this.courseReg = courseReg;
         this.instructorService = instructorServ;
         this.sectionService = secService;
         this.departmentService = deptService;
+        this.tuitionService = tuitionServ;
     }
 
     public void saveStudent(Student student){
@@ -100,5 +102,18 @@ public class CampusRegistrar {
     }
     public void addCourseToDepartment(String departmentId, Course course) {
         departmentService.addCourseToDepartment(departmentId, course);
+    }
+
+    public double calculateTuitionFee(String studentId, int units, double discountRate) {
+        return tuitionService.calculateTuitionFee(studentId, units, discountRate);
+    }
+    public void makePayment(String studentId, double amount) {
+        tuitionService.makePayment(studentId, amount);
+    }
+    public double getRemainingBalance(String studentId) {
+        return tuitionService.getRemainingBalance(studentId);
+    }
+    public boolean isFullyPaid(String studentId) {
+        return tuitionService.isFullyPaid(studentId);
     }
 }

@@ -5,7 +5,6 @@ import java.util.*;
 
 public class StudentServiceImpl implements StudentService {
     List<Student> studentList = new ArrayList<>();
-    Scanner scn = new Scanner(System.in);
 
     @Override
     public void saveStudent(Student student) {
@@ -31,6 +30,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void updateStudent(Student student) {
+        Scanner scn = new Scanner(System.in);
         boolean found = false;
         for (int i = 0; i < studentList.size(); i++) {
             if (studentList.get(i).getId().equals(student.getId())) {

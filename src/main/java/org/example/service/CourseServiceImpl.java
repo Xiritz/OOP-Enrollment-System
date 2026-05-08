@@ -5,7 +5,6 @@ import java.util.*;
 
 public class CourseServiceImpl implements CourseService {
     List<Course> courses = new ArrayList<>();
-    Scanner scn = new Scanner(System.in);
 
     @Override
     public void saveCourse(Course course) {
@@ -31,6 +30,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void updateCourse(Course course) {
+        Scanner scn = new Scanner(System.in);
         boolean found = false;
         for (int i = 0; i < courses.size(); i++) {
             if (courses.get(i).getCourseID().equals(course.getCourseID())) {
