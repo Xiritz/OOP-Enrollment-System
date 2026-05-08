@@ -36,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
 
     public void updateCourse(Course course){
         for (int i=0;i< courses.size();i++){
-            if (courses.get(i).getCourseID() == (course.getCourseID())){
+            if (courses.get(i).getCourseID().equals(course.getCourseID())){
                 System.out.print("Enter Name: ");
                 String name = scn.nextLine();
 
@@ -51,6 +51,21 @@ public class CourseServiceImpl implements CourseService {
     }
 
     public void removeCourse(){
+        System.out.print("Enter Course ID to remove: ");
+        String courseID = scn.nextLine();
 
+        boolean removed = false;
+        for (int i=0; i < courses.size(); i++) {
+            if (courses.get(i).getCourseID().equals(courseID)) {
+                courses.remove(i);
+                System.out.println("Course removed successfully.");
+                removed = true;
+                break;
+            }
+        }
+
+        if (!removed) {
+            System.out.println("Course not found.");
+        }
     }
 }
