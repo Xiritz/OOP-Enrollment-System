@@ -9,6 +9,7 @@ public interface DepartmentService {
     void createDepartment(String id, String departmentName);
     List<Department> getAllDepartments();
     void removeDepartment(String id);
+    void updateDepartment(Department department);
     void addInstructorToDepartment(String departmentId, Instructor instructor);
     void addCourseToDepartment(String departmentId, Course course);
 }

@@ -50,6 +50,26 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public void updateDepartment(Department department) {
+        java.util.Scanner scn = new java.util.Scanner(System.in);
+        boolean found = false;
+        for (int i = 0; i < departmentList.size(); i++) {
+            if (departmentList.get(i).getId().equals(department.getId())) {
+                System.out.print("Enter New Department Name: ");
+                String name = scn.nextLine();
+                
+                departmentList.get(i).setDepartmentName(name);
+                System.out.println("Department updated successfully.");
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Department not found.");
+        }
+    }
+
+    @Override
     public void addInstructorToDepartment(String departmentId, Instructor instructor) {
         boolean found = false;
         for (int i = 0; i < departmentList.size(); i++) {

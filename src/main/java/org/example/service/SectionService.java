@@ -8,6 +8,7 @@ public interface SectionService {
     void addSection(Section section);
     List<Section> getAllSections();
     void deleteSection(String sectionName);
+    void updateSection(Section section);
     void assignStudentToSection(Student student, Section section);
     void assignCourseToSection(Course course, Section section);
 }

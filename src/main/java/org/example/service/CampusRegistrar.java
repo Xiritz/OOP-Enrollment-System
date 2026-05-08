@@ -1,9 +1,6 @@
 package org.example.service;
 
-import org.example.model.Course;
-import org.example.model.Instructor;
-import org.example.model.Section;
-import org.example.model.Student;
+import org.example.model.*;
 
 import java.util.List;
 
@@ -51,11 +48,20 @@ public class CampusRegistrar {
     public void addInstrutor(String id, String name, List<Course> courses){
         instructorService.addInstructor(id, name, courses);
     }
+    public List<Instructor> getAllInstructors(){
+        return instructorService.getAllInstructors();
+    }
+    public void removeInstructor(String id){
+        instructorService.removeInstructor(id);
+    }
     public void assignInstructorToCourse(Instructor instructor, Course course){
         instructorService.assignInstructorToCourse(instructor,course);
     }
     public void getInstructorDetails(Instructor instructor){
         instructorService.getInstructorDetails(instructor);
+    }
+    public void updateInstructor(Instructor instructor){
+        instructorService.updateInstructor(instructor);
     }
 
     public void addSection(Section section){
@@ -63,6 +69,9 @@ public class CampusRegistrar {
     }
     public void deleteSection(String sectionName){
         sectionService.deleteSection(sectionName);
+    }
+    public void updateSection(Section section){
+        sectionService.updateSection(section);
     }
     public void assignStudentToSection(Student student, Section section){
         sectionService.assignStudentToSection(student, section);
@@ -82,6 +91,9 @@ public class CampusRegistrar {
     }
     public void removeDepartment(String id) {
         departmentService.removeDepartment(id);
+    }
+    public void updateDepartment(Department department){
+        departmentService.updateDepartment(department);
     }
     public void addInstructorToDepartment(String departmentId, Instructor instructor) {
         departmentService.addInstructorToDepartment(departmentId, instructor);
