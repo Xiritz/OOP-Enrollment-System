@@ -47,6 +47,26 @@ public class SectionServiceImpl implements SectionService{
     }
 
     @Override
+    public void updateSection(Section section) {
+        java.util.Scanner scn = new java.util.Scanner(System.in);
+        boolean found = false;
+        for (int i = 0; i < sections.size(); i++) {
+            if (sections.get(i).getSectionName().equals(section.getSectionName())) {
+                System.out.print("Enter New Section Name: ");
+                String name = scn.nextLine();
+                
+                sections.get(i).setSectionName(name);
+                System.out.println("Section updated successfully.");
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Section not found.");
+        }
+    }
+
+    @Override
     public void assignStudentToSection(Student student, Section section) {
         if (section.getCurrentCapacity() >= 30){
             System.out.println("Section is full! Cannot enroll " + student.getName());
