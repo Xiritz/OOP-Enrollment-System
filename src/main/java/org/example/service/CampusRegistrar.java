@@ -12,9 +12,14 @@ public class CampusRegistrar {
     private CourseService courseReg;
     private InstructorService instructorService;
     private SectionService sectionService;
-    public CampusRegistrar(StudentService studentReg, CourseService courseReg, InstructorService instructorServ, SectionService secService){
+    private DepartmentService departmentService;
+
+    public CampusRegistrar(StudentService studentReg, CourseService courseReg, InstructorService instructorServ, SectionService secService, DepartmentService deptService){
         this.studentService = studentReg;
         this.courseReg = courseReg;
+        this.instructorService = instructorServ;
+        this.sectionService = secService;
+        this.departmentService = deptService;
     }
 
     public void saveStudent(Student student){
@@ -27,7 +32,7 @@ public class CampusRegistrar {
         studentService.updateStudent(student);
     }
     public void removeStudent(Student student){
-        studentService.updateStudent(student);
+        studentService.removeStudent(student);
     }
 
     public void save(){
@@ -67,5 +72,21 @@ public class CampusRegistrar {
     }
     public void getSectionDetails(){
         sectionService.getSectionDetails();
+    }
+
+    public void createDepartment(String id, String departmentName) {
+        departmentService.createDepartment(id, departmentName);
+    }
+    public void displayDepartment() {
+        departmentService.displayDepartment();
+    }
+    public void removeDepartment() {
+        departmentService.removeDepartment();
+    }
+    public void addInstructorToDepartment(String departmentId, Instructor instructor) {
+        departmentService.addInstructorToDepartment(departmentId, instructor);
+    }
+    public void addCourseToDepartment(String departmentId, Course course) {
+        departmentService.addCourseToDepartment(departmentId, course);
     }
 }
