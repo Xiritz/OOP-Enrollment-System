@@ -2,7 +2,7 @@ package org.example.service;
 
 import org.example.model.Course;
 
-public interface CourseRegistration {
+public interface CourseService {
         void save();
         void display();
         void updateCourse(Course course);

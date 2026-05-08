@@ -3,8 +3,8 @@ import org.example.model.Course;
 
 import java.util.*;
 
-public class CourseRegistrationImpl implements CourseRegistration {
-    ArrayList<Course> courses = new ArrayList();
+public class CourseServiceImpl implements CourseService {
+    List<Course> courses = new ArrayList<>();
     Scanner scn = new Scanner(System.in);
     public void save(){
         while(true){
@@ -23,12 +23,13 @@ public class CourseRegistrationImpl implements CourseRegistration {
             String program = scn.nextLine();
 
 
+
             courses.add(new Course(courseID, courseName, program));
         }
     }
 
     public void display(){
-            for(int i=0;i<courses.size();i++){
+        for(int i=0;i<courses.size();i++){
             System.out.println(courses.get(i));
         }
     }

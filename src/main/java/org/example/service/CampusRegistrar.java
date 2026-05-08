@@ -1,28 +1,33 @@
 package org.example.service;
 
 import org.example.model.Course;
+import org.example.model.Instructor;
+import org.example.model.Section;
 import org.example.model.Student;
 
-public class CampusRegistrar {
-    private StudentRegistration studentReg;
-    private CourseRegistration courseReg;
+import java.util.List;
 
-    public CampusRegistrar(StudentRegistration studentReg, CourseRegistration courseReg) {
-        this.studentReg = studentReg;
+public class CampusRegistrar {
+    private StudentService studentService;
+    private CourseService courseReg;
+    private InstructorService instructorService;
+    private SectionService sectionService;
+    public CampusRegistrar(StudentService studentReg, CourseService courseReg, InstructorService instructorServ, SectionService secService){
+        this.studentService = studentReg;
         this.courseReg = courseReg;
     }
 
     public void saveStudent(Student student){
-        studentReg.saveStudent(student);
+        studentService.saveStudent(student);
     }
     public void displayAllStudent(){
-        studentReg.displayAllStudent();
+        studentService.displayAllStudent();
     }
     public void updateStudent(Student student){
-        studentReg.updateStudent(student);
+        studentService.updateStudent(student);
     }
     public void removeStudent(Student student){
-        studentReg.updateStudent(student);
+        studentService.updateStudent(student);
     }
 
     public void save(){
@@ -36,5 +41,31 @@ public class CampusRegistrar {
     }
     public void removeCourse(){
         courseReg.removeCourse();
+    }
+
+    public void addInstrutor(String id, String name, List<Course> courses){
+        instructorService.addInstructor(id, name, courses);
+    }
+    public void assignInstructorToCourse(Instructor instructor, Course course){
+        instructorService.assignInstructorToCourse(instructor,course);
+    }
+    public void getInstructorDetails(Instructor instructor){
+        instructorService.getInstructorDetails(instructor);
+    }
+
+    public void addSection(String name, Course course){
+        sectionService.addSection(name, course);
+    }
+    public void deleteSection(int sectionIndex){
+        sectionService.deleteSection(sectionIndex);
+    }
+    public void assignStudentToSection(Student student, Section section){
+        sectionService.assignStudentToSection(student, section);
+    }
+    public void assignCourseToSection(Course course, Section section) {
+        sectionService.assignCourseToSection(course, section);
+    }
+    public void getSectionDetails(){
+        sectionService.getSectionDetails();
     }
 }
