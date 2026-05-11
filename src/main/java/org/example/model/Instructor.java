@@ -7,10 +7,6 @@ public class Instructor extends Person {
     private List<Course> courses = new ArrayList<>();
     private List<Section> sections = new ArrayList<>();
 
-    public Instructor(){
-
-    }
-
     public Instructor(String id, String name, List<Course> courses, List<Section> sections){
         super(id,name);
         this.courses = courses;

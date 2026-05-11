@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.model.Course;
 import org.example.model.Department;
 import org.example.model.Instructor;
+import org.example.model.Section;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (exists) {
             System.out.println("Department ID already exists! ");
         } else {
-            departmentList.add(new Department(id, departmentName));
+            departmentList.add(new Department(id, departmentName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
         }
     }
 
@@ -51,21 +52,17 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void updateDepartment(Department department) {
-        java.util.Scanner scn = new java.util.Scanner(System.in);
         boolean found = false;
         for (int i = 0; i < departmentList.size(); i++) {
             if (departmentList.get(i).getId().equals(department.getId())) {
-                System.out.print("Enter New Department Name: ");
-                String name = scn.nextLine();
-                
-                departmentList.get(i).setDepartmentName(name);
-                System.out.println("Department updated successfully.");
+                departmentList.set(i, department);
+                System.out.println("Department record updated in system.");
                 found = true;
                 break;
             }
         }
         if (!found) {
-            System.out.println("Department not found.");
+            System.out.println("Department with ID " + department.getId() + " not found.");
         }
     }
 

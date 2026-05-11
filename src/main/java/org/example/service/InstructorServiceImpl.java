@@ -61,21 +61,17 @@ public class InstructorServiceImpl implements InstructorService {
 
     @Override
     public void updateInstructor(Instructor instructor) {
-        java.util.Scanner scn = new java.util.Scanner(System.in);
         boolean found = false;
         for (int i = 0; i < instructorList.size(); i++) {
             if (instructorList.get(i).getId().equals(instructor.getId())) {
-                System.out.print("Enter Instructor Name: ");
-                String name = scn.nextLine();
-                
-                instructorList.set(i, new Instructor(instructor.getId(), name, instructor.getCourses(), instructor.getSections()));
-                System.out.println("Instructor updated successfully.");
+                instructorList.set(i, instructor);
+                System.out.println("Instructor record updated in system.");
                 found = true;
                 break;
             }
         }
         if (!found) {
-            System.out.println("Instructor not found.");
+            System.out.println("Instructor with ID " + instructor.getId() + " not found.");
         }
     }
 

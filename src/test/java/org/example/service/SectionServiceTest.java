@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SectionServiceTest {
@@ -18,36 +20,32 @@ class SectionServiceTest {
 
     @Test
     void testAddSectionSuccess() {
-        sectionService.addSection(new Section("BSCS-1A", 0));
+        sectionService.addSection(new Section("IT1A", new ArrayList<>(), new ArrayList<>(), 0));
         assertEquals(1, sectionService.getAllSections().size());
     }
 
     @Test
     void testAddSectionDuplicateName() {
-        sectionService.addSection(new Section("BSCS-1A", 0));
-        sectionService.addSection(new Section("BSCS-1A", 0));
+        sectionService.addSection(new Section("IT1A", new ArrayList<>(), new ArrayList<>(), 0));
+        sectionService.addSection(new Section("IT1A", new ArrayList<>(), new ArrayList<>(), 0));
         assertEquals(1, sectionService.getAllSections().size());
     }
 
     @Test
-    void testUpdateSectionInteractive() {
-        sectionService.addSection(new Section("OldName", 0));
-        Section s = sectionService.getAllSections().get(0);
+    void testUpdateSection() {
+        sectionService.addSection(new Section("IT1A", new ArrayList<>(), new ArrayList<>(), 0));
+        Section updated = new Section("IT2A", new ArrayList<>(), new ArrayList<>(), 5);
 
-        String input = "NewName\n";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        sectionService.updateSection(updated);
 
-        sectionService.updateSection(s);
-
-        assertEquals("NewName", sectionService.getAllSections().get(0).getSectionName());
-        System.setIn(System.in);
+        assertEquals("IT2A", sectionService.getAllSections().get(0).getSectionName());
+        assertEquals(5, sectionService.getAllSections().get(0).getCurrentCapacity());
     }
 
     @Test
     void testAssignStudentToSectionSuccess() {
-        Section sec = new Section("BSCS-1A", 0);
-        Student stu = new Student("1001", "John", "BSCS");
+        Section sec = new Section("IT1A", new ArrayList<>(), new ArrayList<>(), 0);
+        Student stu = new Student("1001", "John Doe", "IT1A", null, false, new ArrayList<>(), 0);
         sectionService.assignStudentToSection(stu, sec);
         assertEquals(1, sec.getCurrentCapacity());
         assertEquals(sec, stu.getSectionEnrolled());
@@ -55,8 +53,8 @@ class SectionServiceTest {
 
     @Test
     void testSectionCapacityLimit() {
-        Section fullSec = new Section("FULL", 30);
-        Student stu = new Student("1001", "John", "BSCS");
+        Section fullSec = new Section("IT1A", new ArrayList<>(), new ArrayList<>(), 30);
+        Student stu = new Student("1001", "Jane Doe", "IT1A", null, false, new ArrayList<>(), 0);
         sectionService.assignStudentToSection(stu, fullSec);
         assertEquals(30, fullSec.getCurrentCapacity());
         assertNull(stu.getSectionEnrolled());
@@ -64,8 +62,8 @@ class SectionServiceTest {
 
     @Test
     void testDeleteSectionSuccess() {
-        sectionService.addSection(new Section("BSCS-1A", 0));
-        sectionService.deleteSection("BSCS-1A");
+        sectionService.addSection(new Section("IT1A", new ArrayList<>(), new ArrayList<>(), 0));
+        sectionService.deleteSection("IT1A");
         assertEquals(0, sectionService.getAllSections().size());
     }
 }

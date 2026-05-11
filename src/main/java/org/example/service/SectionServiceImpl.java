@@ -48,15 +48,11 @@ public class SectionServiceImpl implements SectionService{
 
     @Override
     public void updateSection(Section section) {
-        java.util.Scanner scn = new java.util.Scanner(System.in);
         boolean found = false;
         for (int i = 0; i < sections.size(); i++) {
             if (sections.get(i).getSectionName().equals(section.getSectionName())) {
-                System.out.print("Enter New Section Name: ");
-                String name = scn.nextLine();
-                
-                sections.get(i).setSectionName(name);
-                System.out.println("Section updated successfully.");
+                sections.set(i, section);
+                System.out.println("Section record updated in system.");
                 found = true;
                 break;
             }
@@ -72,16 +68,36 @@ public class SectionServiceImpl implements SectionService{
             System.out.println("Section is full! Cannot enroll " + student.getName());
             return;
         }
+if (section.equals(student.getSectionEnrolled())){
+    System.out.println("Student is already enrolled in this section!");
+    return;
+}
 
-        if (section.equals(student.getSectionEnrolled())){
-            System.out.println("Student is already enrolled in this section!");
-            return;
+for (Course course : section.getCourses()) {
+    if (course.getPrerequisite() != null) {
+                boolean canEnroll = false;
+                for (Course passedCourse : student.getPassedCourses()) {
+                    if (passedCourse.getCourseID().equals(course.getPrerequisite().getCourseID())) {
+                        canEnroll = true;
+                        break;
+                    }
+                }
+                if (!canEnroll) {
+                    System.out.println(course.getPrerequisite().getCourseName() + " for course: " + course.getCourseName());
+                    return;
+                }
+            }
         }
 
         student.setSectionEnrolled(section);
+        int totalUnits = 0;
+        for (Course course : section.getCourses()) {
+            totalUnits += course.getUnits();
+        }
+        student.setUnitsEnrolled(student.getUnitsEnrolled() + totalUnits);
         section.setCurrentCapacity(section.getCurrentCapacity() + 1);
         section.getEnrolledStudents().add(student);
-        System.out.println("Student " + student.getName() + " enrolled in " + section.getSectionName());
+        System.out.println("Student " + student.getName() + " enrolled in " + section.getSectionName() + ". Total units added: " + totalUnits);
     }
 
     @Override

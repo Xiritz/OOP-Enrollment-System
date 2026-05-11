@@ -10,12 +10,12 @@ public class Department {
     private List<Course> courses;
     private List<Section> sections;
 
-    public Department(String id, String departmentName) {
+    public Department(String id, String departmentName, List<Instructor> instructors, List<Course> courses, List<Section> sections) {
         this.id = id;
         this.departmentName = departmentName;
-        this.instructors = new ArrayList<>();
-        this.courses = new ArrayList<>();
-        this.sections = new ArrayList<>();
+        this.instructors = instructors;
+        this.courses = courses;
+        this.sections = sections;
     }
 
     public String getId() {
