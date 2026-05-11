@@ -20,14 +20,14 @@ class DepartmentServiceTest {
 
     @Test
     void testCreateDepartmentSuccess() {
-        departmentService.createDepartment("D001", "CS");
+        departmentService.createDepartment("D001", "CCS");
         assertEquals(1, departmentService.getAllDepartments().size());
     }
 
     @Test
     void testCreateDepartmentDuplicateID() {
-        departmentService.createDepartment("D001", "CS");
-        departmentService.createDepartment("D001", "IT");
+        departmentService.createDepartment("D001", "CCS");
+        departmentService.createDepartment("D001", "CBA");
         assertEquals(1, departmentService.getAllDepartments().size());
     }
 
@@ -36,7 +36,7 @@ class DepartmentServiceTest {
         departmentService.createDepartment("D001", "Old Name");
         Department d = departmentService.getAllDepartments().get(0);
 
-        String input = "New Name\n";
+        String input = "New Name" + System.lineSeparator();
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -48,15 +48,15 @@ class DepartmentServiceTest {
 
     @Test
     void testAddInstructorToDepartment() {
-        departmentService.createDepartment("D001", "CS");
-        Instructor i = new Instructor("I001", "Smith", new ArrayList<>(), new ArrayList<>());
+        departmentService.createDepartment("D001", "CCS");
+        Instructor i = new Instructor("I001", "Bob Smith", new ArrayList<>(), new ArrayList<>());
         departmentService.addInstructorToDepartment("D001", i);
         assertTrue(departmentService.getAllDepartments().get(0).getInstructors().contains(i));
     }
 
     @Test
     void testRemoveDepartmentSuccess() {
-        departmentService.createDepartment("D001", "CS");
+        departmentService.createDepartment("D001", "CCS");
         departmentService.removeDepartment("D001");
         assertEquals(0, departmentService.getAllDepartments().size());
     }

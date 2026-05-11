@@ -29,38 +29,38 @@ class StudentServiceTest {
 
     @Test
     void testSaveStudentSuccess() {
-        Student s = new Student("1001", "John Doe", "BSCS");
+        Student s = new Student("1001", "John Doe", "IT1A");
         studentService.saveStudent(s);
         assertEquals(1, studentService.getAllStudents().size());
     }
 
     @Test
     void testSaveStudentDuplicateID() {
-        studentService.saveStudent(new Student("1001", "John", "BSCS"));
-        studentService.saveStudent(new Student("1001", "Jane", "BSIT"));
+        studentService.saveStudent(new Student("1001", "John Doe", "IT1A"));
+        studentService.saveStudent(new Student("1001", "Jane Doe", "IT2A"));
         assertEquals(1, studentService.getAllStudents().size());
     }
 
     @Test
     @Timeout(value = 5, unit = TimeUnit.SECONDS)
     void testUpdateStudentInteractive() {
-        studentService.saveStudent(new Student("1001", "Old Name", "Old Program"));
+        studentService.saveStudent(new Student("1001", "John Doe", "IT1A"));
         Student s = studentService.getAllStudents().get(0);
 
-        String input = "New Name" + System.lineSeparator() + "New Program" + System.lineSeparator();
+        String input = "Bob Smith" + System.lineSeparator() + "IT3A" + System.lineSeparator();
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
         studentService.updateStudent(s);
 
         Student updated = studentService.getAllStudents().get(0);
-        assertEquals("New Name", updated.getName());
-        assertEquals("New Program", updated.getProgram());
+        assertEquals("Bob Smith", updated.getName());
+        assertEquals("IT3A", updated.getProgram());
     }
 
     @Test
     void testRemoveStudentSuccess() {
-        studentService.saveStudent(new Student("1001", "John", "BSCS"));
+        studentService.saveStudent(new Student("1001", "Jane Doe", "IT2A"));
         studentService.removeStudent("1001");
         assertEquals(0, studentService.getAllStudents().size());
     }

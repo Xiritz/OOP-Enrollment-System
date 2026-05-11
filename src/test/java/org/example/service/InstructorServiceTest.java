@@ -19,36 +19,36 @@ class InstructorServiceTest {
 
     @Test
     void testAddInstructorSuccess() {
-        instructorService.addInstructor("I001", "Prof. X", new ArrayList<>());
+        instructorService.addInstructor("I001", "Bob Smith", new ArrayList<>());
         assertEquals(1, instructorService.getAllInstructors().size());
     }
 
     @Test
     void testAddInstructorDuplicateID() {
-        instructorService.addInstructor("I001", "Prof. X", new ArrayList<>());
-        instructorService.addInstructor("I001", "Prof. Y", new ArrayList<>());
+        instructorService.addInstructor("I001", "Bob Smith", new ArrayList<>());
+        instructorService.addInstructor("I001", "Jane Doe", new ArrayList<>());
         assertEquals(1, instructorService.getAllInstructors().size());
     }
 
     @Test
     void testUpdateInstructorInteractive() {
-        instructorService.addInstructor("I001", "Old Name", new ArrayList<>());
+        instructorService.addInstructor("I001", "John Doe", new ArrayList<>());
         Instructor i = instructorService.getAllInstructors().get(0);
 
-        String input = "New Name\n";
+        String input = "Bob Smith" + System.lineSeparator();
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
         instructorService.updateInstructor(i);
 
-        assertEquals("New Name", instructorService.getAllInstructors().get(0).getName());
+        assertEquals("Bob Smith", instructorService.getAllInstructors().get(0).getName());
         System.setIn(System.in);
     }
 
     @Test
     void testAssignInstructorToCourse() {
-        Instructor i = new Instructor("I001", "Smith", new ArrayList<>(), new ArrayList<>());
-        Course c = new Course("CS101", "Java", "BSCS");
+        Instructor i = new Instructor("I001", "Bob Smith", new ArrayList<>(), new ArrayList<>());
+        Course c = new Course("CS101", "Java", "IT1A", 3);
         instructorService.assignInstructorToCourse(i, c);
         assertEquals(i, c.getInstructor());
         assertTrue(i.getCourses().contains(c));
@@ -56,7 +56,7 @@ class InstructorServiceTest {
 
     @Test
     void testRemoveInstructorSuccess() {
-        instructorService.addInstructor("I001", "Smith", new ArrayList<>());
+        instructorService.addInstructor("I001", "Bob Smith", new ArrayList<>());
         instructorService.removeInstructor("I001");
         assertEquals(0, instructorService.getAllInstructors().size());
     }

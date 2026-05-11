@@ -18,36 +18,36 @@ class SectionServiceTest {
 
     @Test
     void testAddSectionSuccess() {
-        sectionService.addSection(new Section("BSCS-1A", 0));
+        sectionService.addSection(new Section("IT1A", 0));
         assertEquals(1, sectionService.getAllSections().size());
     }
 
     @Test
     void testAddSectionDuplicateName() {
-        sectionService.addSection(new Section("BSCS-1A", 0));
-        sectionService.addSection(new Section("BSCS-1A", 0));
+        sectionService.addSection(new Section("IT1A", 0));
+        sectionService.addSection(new Section("IT1A", 0));
         assertEquals(1, sectionService.getAllSections().size());
     }
 
     @Test
     void testUpdateSectionInteractive() {
-        sectionService.addSection(new Section("OldName", 0));
+        sectionService.addSection(new Section("IT1A", 0));
         Section s = sectionService.getAllSections().get(0);
 
-        String input = "NewName\n";
+        String input = "IT2A" + System.lineSeparator();
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
         sectionService.updateSection(s);
 
-        assertEquals("NewName", sectionService.getAllSections().get(0).getSectionName());
+        assertEquals("IT2A", sectionService.getAllSections().get(0).getSectionName());
         System.setIn(System.in);
     }
 
     @Test
     void testAssignStudentToSectionSuccess() {
-        Section sec = new Section("BSCS-1A", 0);
-        Student stu = new Student("1001", "John", "BSCS");
+        Section sec = new Section("IT1A", 0);
+        Student stu = new Student("1001", "John Doe", "IT1A");
         sectionService.assignStudentToSection(stu, sec);
         assertEquals(1, sec.getCurrentCapacity());
         assertEquals(sec, stu.getSectionEnrolled());
@@ -55,8 +55,8 @@ class SectionServiceTest {
 
     @Test
     void testSectionCapacityLimit() {
-        Section fullSec = new Section("FULL", 30);
-        Student stu = new Student("1001", "John", "BSCS");
+        Section fullSec = new Section("IT1A", 30);
+        Student stu = new Student("1001", "Jane Doe", "IT1A");
         sectionService.assignStudentToSection(stu, fullSec);
         assertEquals(30, fullSec.getCurrentCapacity());
         assertNull(stu.getSectionEnrolled());
@@ -64,8 +64,8 @@ class SectionServiceTest {
 
     @Test
     void testDeleteSectionSuccess() {
-        sectionService.addSection(new Section("BSCS-1A", 0));
-        sectionService.deleteSection("BSCS-1A");
+        sectionService.addSection(new Section("IT1A", 0));
+        sectionService.deleteSection("IT1A");
         assertEquals(0, sectionService.getAllSections().size());
     }
 }
