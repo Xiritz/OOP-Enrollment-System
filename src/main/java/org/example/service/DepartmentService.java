@@ -12,4 +12,5 @@ public interface DepartmentService {
     void updateDepartment(Department department);
     void addInstructorToDepartment(String departmentId, Instructor instructor);
     void addCourseToDepartment(String departmentId, Course course);
+    void addSectionToDepartment(String departmentId, Section section);
 }

@@ -103,6 +103,9 @@ public class CampusRegistrar {
     public void addCourseToDepartment(String departmentId, Course course) {
         departmentService.addCourseToDepartment(departmentId, course);
     }
+    public void addSectionToDepartment(String departmentId, Section section) {
+        departmentService.addSectionToDepartment(departmentId, section);
+    }
 
     public double calculateTuitionFee(String studentId, int units, double discountRate) {
         return tuitionService.calculateTuitionFee(studentId, units, discountRate);

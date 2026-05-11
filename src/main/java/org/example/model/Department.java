@@ -8,12 +8,14 @@ public class Department {
     private String departmentName;
     private List<Instructor> instructors;
     private List<Course> courses;
+    private List<Section> sections;
 
     public Department(String id, String departmentName) {
         this.id = id;
         this.departmentName = departmentName;
         this.instructors = new ArrayList<>();
         this.courses = new ArrayList<>();
+        this.sections = new ArrayList<>();
     }
 
     public String getId() {
@@ -48,6 +50,14 @@ public class Department {
         this.courses = courses;
     }
 
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
@@ -55,6 +65,7 @@ public class Department {
                 ", departmentName='" + departmentName + '\'' +
                 ", instructorsCount=" + instructors.size() +
                 ", coursesCount=" + courses.size() +
+                ", sectionsCount=" + sections.size() +
                 '}';
     }
 }
