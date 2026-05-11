@@ -8,27 +8,30 @@ public class Course {
     private Instructor instructor;
     private Section assignedSection;
     private Course prerequisite;
+    private int units;
 
     public Course(){
 
     }
 
-    public Course(String courseID, String courseName, String program){
+    public Course(String courseID, String courseName, String program, int units){
         this.courseID = courseID;
         this.courseName = courseName;
         this.program = program;
+        this.units = units;
     }
 
-    public Course(String courseID, String courseName, String program, Instructor instructor){
+    public Course(String courseID, String courseName, String program, Instructor instructor, int units){
         this.courseID = courseID;
         this.courseName = courseName;
         this.program = program;
         this.instructor = instructor;
+        this.units = units;
     }
 
 
-    public Course(String courseID, String courseName, String program, Instructor instructor, Section assignedSection){
-        this(courseID, courseName, program, instructor);
+    public Course(String courseID, String courseName, String program, Instructor instructor, Section assignedSection, int units){
+        this(courseID, courseName, program, instructor, units);
         this.assignedSection = assignedSection;
     }
 
@@ -72,11 +75,19 @@ public class Course {
         this.prerequisite = prerequisite;
     }
 
+    public int getUnits() {
+        return units;
+    }
+
+    public void setUnits(int units) {
+        this.units = units;
+    }
 
     public void displayCourse(){
         System.out.println("Course ID: " + getCourseID());
         System.out.println("Course Name: " + getCourseName());
         System.out.println("Course Program: " + getProgram());
+        System.out.println("Units: " + getUnits());
         if (prerequisite != null) {
             System.out.println("Prerequisite: " + prerequisite.getCourseName());
         }

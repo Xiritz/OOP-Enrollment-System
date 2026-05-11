@@ -72,14 +72,13 @@ public class SectionServiceImpl implements SectionService{
             System.out.println("Section is full! Cannot enroll " + student.getName());
             return;
         }
+if (section.equals(student.getSectionEnrolled())){
+    System.out.println("Student is already enrolled in this section!");
+    return;
+}
 
-        if (section.equals(student.getSectionEnrolled())){
-            System.out.println("Student is already enrolled in this section!");
-            return;
-        }
-
-        for (Course course : section.getCourses()) {
-            if (course.getPrerequisite() != null) {
+for (Course course : section.getCourses()) {
+    if (course.getPrerequisite() != null) {
                 boolean canEnroll = false;
                 for (Course passedCourse : student.getPassedCourses()) {
                     if (passedCourse.getCourseID().equals(course.getPrerequisite().getCourseID())) {
@@ -95,9 +94,14 @@ public class SectionServiceImpl implements SectionService{
         }
 
         student.setSectionEnrolled(section);
+        int totalUnits = 0;
+        for (Course course : section.getCourses()) {
+            totalUnits += course.getUnits();
+        }
+        student.setUnitsEnrolled(student.getUnitsEnrolled() + totalUnits);
         section.setCurrentCapacity(section.getCurrentCapacity() + 1);
         section.getEnrolledStudents().add(student);
-        System.out.println("Student " + student.getName() + " enrolled in " + section.getSectionName());
+        System.out.println("Student " + student.getName() + " enrolled in " + section.getSectionName() + ". Total units added: " + totalUnits);
     }
 
     @Override

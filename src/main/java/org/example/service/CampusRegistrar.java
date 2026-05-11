@@ -107,8 +107,13 @@ public class CampusRegistrar {
         departmentService.addSectionToDepartment(departmentId, section);
     }
 
-    public double calculateTuitionFee(String studentId, int units, double discountRate) {
-        return tuitionService.calculateTuitionFee(studentId, units, discountRate);
+    public double calculateTuitionFee(String studentId, double discountRate) {
+        Student student = studentService.getStudentById(studentId);
+        if (student == null) {
+            System.out.println("Student not found.");
+            return 0;
+        }
+        return tuitionService.calculateTuitionFee(studentId, student.getUnitsEnrolled(), discountRate);
     }
     public void makePayment(String studentId, double amount) {
         tuitionService.makePayment(studentId, amount);

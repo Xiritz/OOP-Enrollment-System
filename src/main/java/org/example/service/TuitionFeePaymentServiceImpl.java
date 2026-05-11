@@ -1,11 +1,22 @@
 package org.example.service;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.example.model.Payment;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TuitionFeePaymentServiceImpl implements TuitionFeePaymentService {
     private final double PRICE_PER_UNIT = 1000.00;
-    private Map<String, Double> studentBalances = new HashMap<>();
+    
+    private List<Payment> paymentRecords = new ArrayList<>();
+
+    private Payment findPaymentRecord(String studentId) {
+        for (Payment payment : paymentRecords) {
+            if (payment.getStudentId().equals(studentId)) {
+                return payment;
+            }
+        }
+        return null;
+    }
 
     @Override
     public double calculateTuitionFee(String studentId, int units, double discountRate) {
@@ -17,25 +28,33 @@ public class TuitionFeePaymentServiceImpl implements TuitionFeePaymentService {
             totalTuition = (units * PRICE_PER_UNIT);
         }
         
-        studentBalances.put(studentId, totalTuition);
+        Payment payment = findPaymentRecord(studentId);
+        if (payment != null) {
+            payment.setTotalTuition(totalTuition);
+            payment.setRemainingBalance(totalTuition); 
+        } else {
+            paymentRecords.add(new Payment(studentId, totalTuition));
+        }
+        
         return totalTuition;
     }
 
     @Override
     public void makePayment(String studentId, double amount) {
-        if (!studentBalances.containsKey(studentId)) {
+        Payment payment = findPaymentRecord(studentId);
+        
+        if (payment == null) {
             System.out.println("No tuition record found for Student ID: " + studentId);
         } else if (amount <= 0) {
             System.out.println("Invalid payment amount. Must be greater than zero.");
         } else {
-            double currentBalance = studentBalances.get(studentId);
+            double currentBalance = payment.getRemainingBalance();
             if (amount > currentBalance) {
                 System.out.println("Overpayment detected! Current balance is: " + currentBalance + ". Rejecting transaction.");
             } else {
-                double newBalance = currentBalance - amount;
-                studentBalances.put(studentId, newBalance);
+                payment.setRemainingBalance(currentBalance - amount);
                 System.out.println("Payment of " + amount + " successful for Student " + studentId + ".");
-                if (newBalance == 0) {
+                if (payment.getRemainingBalance() == 0) {
                     System.out.println("Student " + studentId + " has fully paid their tuition.");
                 }
             }
@@ -44,8 +63,9 @@ public class TuitionFeePaymentServiceImpl implements TuitionFeePaymentService {
 
     @Override
     public double getRemainingBalance(String studentId) {
-        if (studentBalances.containsKey(studentId)) {
-            return studentBalances.get(studentId);
+        Payment payment = findPaymentRecord(studentId);
+        if (payment != null) {
+            return payment.getRemainingBalance();
         } else {
             System.out.println("No balance found for Student: " + studentId);
             return 0;
@@ -54,8 +74,9 @@ public class TuitionFeePaymentServiceImpl implements TuitionFeePaymentService {
 
     @Override
     public boolean isFullyPaid(String studentId) {
-        if (studentBalances.containsKey(studentId)) {
-            return studentBalances.get(studentId) == 0;
+        Payment payment = findPaymentRecord(studentId);
+        if (payment != null) {
+            return payment.getRemainingBalance() == 0;
         } else {
             return false;
         }

@@ -8,21 +8,25 @@ public class Student extends Person{
     private Section sectionEnrolled;
     private boolean isScholar;
     private List<Course> passedCourses;
+    private int unitsEnrolled;
 
     public Student(){
         this.passedCourses = new ArrayList<>();
+        this.unitsEnrolled = 0;
     }
 
     public Student(String id, String name,String program){
         super(id, name);
         this.program = program;
         this.passedCourses = new ArrayList<>();
+        this.unitsEnrolled = 0;
     }
 
     public Student(String id, String name,String program, Section section){
         this(id, name, program);
         this.sectionEnrolled = section;
         this.passedCourses = new ArrayList<>();
+        this.unitsEnrolled = 0;
     }
 
     public String getProgram(){
@@ -46,7 +50,7 @@ public class Student extends Person{
     }
 
     public void setScholar(boolean scholar) {
-        isScholar = scholar;
+        this.isScholar = scholar;
     }
 
     public List<Course> getPassedCourses() {
@@ -61,13 +65,16 @@ public class Student extends Person{
         this.passedCourses.add(course);
     }
 
+    public int getUnitsEnrolled() {
+        return unitsEnrolled;
+    }
+
+    public void setUnitsEnrolled(int unitsEnrolled) {
+        this.unitsEnrolled = unitsEnrolled;
+    }
+
     @Override
     public void mainTask(){
         System.out.println("Studies");
     }
-
-
-
-
-
 }

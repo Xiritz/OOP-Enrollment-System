@@ -66,4 +66,14 @@ public class StudentServiceImpl implements StudentService {
             System.out.println("Student not found.");
         }
     }
+
+    @Override
+    public Student getStudentById(String studentId) {
+        for (Student s : studentList) {
+            if (s.getId().equals(studentId)) {
+                return s;
+            }
+        }
+        return null;
+    }
 }

@@ -40,7 +40,10 @@ public class CourseServiceImpl implements CourseService {
                 System.out.print("Enter Program: ");
                 String program = scn.nextLine();
 
-                courses.set(i, new Course(course.getCourseID(), name, program));
+                System.out.print("Enter Units: ");
+                int units = Integer.parseInt(scn.nextLine());
+
+                courses.set(i, new Course(course.getCourseID(), name, program, units));
                 System.out.println("Course updated successfully.");
                 found = true;
                 break;
