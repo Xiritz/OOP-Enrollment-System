@@ -80,6 +80,7 @@ public class SectionServiceImpl implements SectionService{
 
         student.setSectionEnrolled(section);
         section.setCurrentCapacity(section.getCurrentCapacity() + 1);
+        section.getEnrolledStudents().add(student);
         System.out.println("Student " + student.getName() + " enrolled in " + section.getSectionName());
     }
 

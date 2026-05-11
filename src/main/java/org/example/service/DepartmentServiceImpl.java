@@ -99,4 +99,19 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
     }
 
+    @Override
+    public void addSectionToDepartment(String departmentId, Section section) {
+        boolean found = false;
+        for (int i = 0; i < departmentList.size(); i++) {
+            if (departmentList.get(i).getId().equals(departmentId)) {
+                departmentList.get(i).getSections().add(section);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Department not found: " + departmentId);
+        }
+    }
+
 }

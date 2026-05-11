@@ -6,6 +6,7 @@ import java.util.List;
 public class Section {
     private String sectionName;
     private List<Course> courses;
+    private List<Student> enrolledStudents;
     private final int maxCapacity = 30;
     private int currentCapacity = 0;
 
@@ -13,12 +14,14 @@ public class Section {
         this.sectionName = sectionName;
         this.courses = courses;
         this.currentCapacity = currentCapacity;
+        this.enrolledStudents = new ArrayList<>();
     }
 
     public Section(String sectionName, int currentCapacity){
         this.sectionName = sectionName;
         this.courses = new ArrayList<>();
         this.currentCapacity = currentCapacity;
+        this.enrolledStudents = new ArrayList<>();
     }
 
     public String getSectionName() {
@@ -47,5 +50,13 @@ public class Section {
 
     public void setCurrentCapacity(int currentCapacity){
         this.currentCapacity = currentCapacity;
+    }
+
+    public List<Student> getEnrolledStudents() {
+        return enrolledStudents;
+    }
+
+    public void setEnrolledStudents(List<Student> enrolledStudents) {
+        this.enrolledStudents = enrolledStudents;
     }
 }
