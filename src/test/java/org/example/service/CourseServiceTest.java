@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CourseServiceTest {
@@ -17,36 +18,31 @@ class CourseServiceTest {
 
     @Test
     void testSaveCourseSuccess() {
-        courseService.saveCourse(new Course("CS101", "Java", "IT1A", 3));
+        courseService.saveCourse(new Course("CS101", "Java", "IT1A", null, null, null, 3));
         assertEquals(1, courseService.getAllCourses().size());
     }
 
     @Test
     void testSaveCourseDuplicateID() {
-        courseService.saveCourse(new Course("CS101", "Java", "IT1A", 3));
-        courseService.saveCourse(new Course("CS101", "Python", "IT2A", 3));
+        courseService.saveCourse(new Course("CS101", "Java", "IT1A", null, null, null, 3));
+        courseService.saveCourse(new Course("CS101", "Python", "IT2A", null, null, null, 3));
         assertEquals(1, courseService.getAllCourses().size());
     }
 
     @Test
-    void testUpdateCourseInteractive() {
-        courseService.saveCourse(new Course("CS101", "Old Title", "IT1A", 3));
-        Course c = courseService.getAllCourses().get(0);
+    void testUpdateCourse() {
+        courseService.saveCourse(new Course("CS101", "Old Title", "IT1A", null, null, null, 3));
+        Course updated = new Course("CS101", "New Title", "IT2A", null, null, null, 4);
 
-        String input = "New Title" + System.lineSeparator() + "IT2A" + System.lineSeparator() + "4" + System.lineSeparator();
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        courseService.updateCourse(c);
+        courseService.updateCourse(updated);
 
         assertEquals("New Title", courseService.getAllCourses().get(0).getCourseName());
         assertEquals(4, courseService.getAllCourses().get(0).getUnits());
-        System.setIn(System.in);
     }
 
     @Test
     void testRemoveCourseSuccess() {
-        courseService.saveCourse(new Course("CS101", "Java", "IT1A", 3));
+        courseService.saveCourse(new Course("CS101", "Java", "IT1A", null, null, null, 3));
         boolean result = courseService.removeCourse("CS101");
         assertTrue(result);
         assertEquals(0, courseService.getAllCourses().size());

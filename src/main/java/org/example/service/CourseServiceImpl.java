@@ -30,27 +30,17 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void updateCourse(Course course) {
-        Scanner scn = new Scanner(System.in);
         boolean found = false;
         for (int i = 0; i < courses.size(); i++) {
             if (courses.get(i).getCourseID().equals(course.getCourseID())) {
-                System.out.print("Enter Name: ");
-                String name = scn.nextLine();
-
-                System.out.print("Enter Program: ");
-                String program = scn.nextLine();
-
-                System.out.print("Enter Units: ");
-                int units = Integer.parseInt(scn.nextLine());
-
-                courses.set(i, new Course(course.getCourseID(), name, program, units));
-                System.out.println("Course updated successfully.");
+                courses.set(i, course);
+                System.out.println("Course record updated in system.");
                 found = true;
                 break;
             }
         }
         if (!found) {
-            System.out.println("Course not found.");
+            System.out.println("Course with ID " + course.getCourseID() + " not found.");
         }
     }
 

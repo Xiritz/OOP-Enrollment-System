@@ -33,6 +33,9 @@ public class CampusRegistrar {
     public void removeStudent(String studentId){
         studentService.removeStudent(studentId);
     }
+    public Student getStudentById(String studentId){
+        return studentService.getStudentById(studentId);
+    }
 
     public void saveCourse(Course course){
         courseReg.saveCourse(course);

@@ -30,24 +30,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void updateStudent(Student student) {
-        Scanner scn = new Scanner(System.in);
         boolean found = false;
         for (int i = 0; i < studentList.size(); i++) {
             if (studentList.get(i).getId().equals(student.getId())) {
-                System.out.print("Enter Name: ");
-                String name = scn.nextLine();
-
-                System.out.print("Enter Program: ");
-                String program = scn.nextLine();
-
-                studentList.set(i, new Student(student.getId(), name, program));
-                System.out.println("Student updated successfully.");
+                studentList.set(i, student);
+                System.out.println("Student record updated in system.");
                 found = true;
                 break;
             }
         }
         if (!found) {
-            System.out.println("Student not found.");
+            System.out.println("Student with ID " + student.getId() + " not found.");
         }
     }
 

@@ -10,23 +10,13 @@ public class Student extends Person{
     private List<Course> passedCourses;
     private int unitsEnrolled;
 
-    public Student(){
-        this.passedCourses = new ArrayList<>();
-        this.unitsEnrolled = 0;
-    }
-
-    public Student(String id, String name,String program){
+    public Student(String id, String name, String program, Section sectionEnrolled, boolean isScholar, List<Course> passedCourses, int unitsEnrolled) {
         super(id, name);
         this.program = program;
-        this.passedCourses = new ArrayList<>();
-        this.unitsEnrolled = 0;
-    }
-
-    public Student(String id, String name,String program, Section section){
-        this(id, name, program);
-        this.sectionEnrolled = section;
-        this.passedCourses = new ArrayList<>();
-        this.unitsEnrolled = 0;
+        this.sectionEnrolled = sectionEnrolled;
+        this.isScholar = isScholar;
+        this.passedCourses = passedCourses;
+        this.unitsEnrolled = unitsEnrolled;
     }
 
     public String getProgram(){

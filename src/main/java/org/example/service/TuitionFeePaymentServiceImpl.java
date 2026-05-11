@@ -33,7 +33,7 @@ public class TuitionFeePaymentServiceImpl implements TuitionFeePaymentService {
             payment.setTotalTuition(totalTuition);
             payment.setRemainingBalance(totalTuition); 
         } else {
-            paymentRecords.add(new Payment(studentId, totalTuition));
+            paymentRecords.add(new Payment(studentId, totalTuition, totalTuition));
         }
         
         return totalTuition;

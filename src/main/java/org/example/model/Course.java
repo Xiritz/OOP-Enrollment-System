@@ -10,29 +10,14 @@ public class Course {
     private Course prerequisite;
     private int units;
 
-    public Course(){
-
-    }
-
-    public Course(String courseID, String courseName, String program, int units){
-        this.courseID = courseID;
-        this.courseName = courseName;
-        this.program = program;
-        this.units = units;
-    }
-
-    public Course(String courseID, String courseName, String program, Instructor instructor, int units){
+    public Course(String courseID, String courseName, String program, Instructor instructor, Section assignedSection, Course prerequisite, int units) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.program = program;
         this.instructor = instructor;
-        this.units = units;
-    }
-
-
-    public Course(String courseID, String courseName, String program, Instructor instructor, Section assignedSection, int units){
-        this(courseID, courseName, program, instructor, units);
         this.assignedSection = assignedSection;
+        this.prerequisite = prerequisite;
+        this.units = units;
     }
 
     public String getCourseID(){
@@ -65,6 +50,14 @@ public class Course {
 
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
+    }
+
+    public Section getAssignedSection() {
+        return assignedSection;
+    }
+
+    public void setAssignedSection(Section assignedSection) {
+        this.assignedSection = assignedSection;
     }
 
     public Course getPrerequisite() {

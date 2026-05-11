@@ -31,24 +31,19 @@ class InstructorServiceTest {
     }
 
     @Test
-    void testUpdateInstructorInteractive() {
+    void testUpdateInstructor() {
         instructorService.addInstructor("I001", "John Doe", new ArrayList<>());
-        Instructor i = instructorService.getAllInstructors().get(0);
+        Instructor updated = new Instructor("I001", "Bob Smith", new ArrayList<>(), new ArrayList<>());
 
-        String input = "Bob Smith" + System.lineSeparator();
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        instructorService.updateInstructor(i);
+        instructorService.updateInstructor(updated);
 
         assertEquals("Bob Smith", instructorService.getAllInstructors().get(0).getName());
-        System.setIn(System.in);
     }
 
     @Test
     void testAssignInstructorToCourse() {
         Instructor i = new Instructor("I001", "Bob Smith", new ArrayList<>(), new ArrayList<>());
-        Course c = new Course("CS101", "Java", "IT1A", 3);
+        Course c = new Course("CS101", "Java", "IT1A", null, null, null, 3);
         instructorService.assignInstructorToCourse(i, c);
         assertEquals(i, c.getInstructor());
         assertTrue(i.getCourses().contains(c));

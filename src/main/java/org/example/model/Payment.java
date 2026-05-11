@@ -5,10 +5,10 @@ public class Payment {
     private double totalTuition;
     private double remainingBalance;
 
-    public Payment(String studentId, double totalTuition) {
+    public Payment(String studentId, double totalTuition, double remainingBalance) {
         this.studentId = studentId;
         this.totalTuition = totalTuition;
-        this.remainingBalance = totalTuition;
+        this.remainingBalance = remainingBalance;
     }
 
     public String getStudentId() {

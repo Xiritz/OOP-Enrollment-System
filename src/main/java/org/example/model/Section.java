@@ -10,18 +10,11 @@ public class Section {
     private final int maxCapacity = 30;
     private int currentCapacity = 0;
 
-    public Section(String sectionName, List<Course> courses, int currentCapacity){
+    public Section(String sectionName, List<Course> courses, List<Student> enrolledStudents, int currentCapacity){
         this.sectionName = sectionName;
         this.courses = courses;
+        this.enrolledStudents = enrolledStudents;
         this.currentCapacity = currentCapacity;
-        this.enrolledStudents = new ArrayList<>();
-    }
-
-    public Section(String sectionName, int currentCapacity){
-        this.sectionName = sectionName;
-        this.courses = new ArrayList<>();
-        this.currentCapacity = currentCapacity;
-        this.enrolledStudents = new ArrayList<>();
     }
 
     public String getSectionName() {

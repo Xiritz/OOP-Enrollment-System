@@ -32,18 +32,13 @@ class DepartmentServiceTest {
     }
 
     @Test
-    void testUpdateDepartmentInteractive() {
+    void testUpdateDepartment() {
         departmentService.createDepartment("D001", "Old Name");
-        Department d = departmentService.getAllDepartments().get(0);
+        Department updated = new Department("D001", "New Name", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
-        String input = "New Name" + System.lineSeparator();
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        departmentService.updateDepartment(d);
+        departmentService.updateDepartment(updated);
 
         assertEquals("New Name", departmentService.getAllDepartments().get(0).getDepartmentName());
-        System.setIn(System.in);
     }
 
     @Test

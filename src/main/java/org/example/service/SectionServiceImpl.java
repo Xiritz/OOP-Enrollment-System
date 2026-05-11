@@ -48,15 +48,11 @@ public class SectionServiceImpl implements SectionService{
 
     @Override
     public void updateSection(Section section) {
-        java.util.Scanner scn = new java.util.Scanner(System.in);
         boolean found = false;
         for (int i = 0; i < sections.size(); i++) {
             if (sections.get(i).getSectionName().equals(section.getSectionName())) {
-                System.out.print("Enter New Section Name: ");
-                String name = scn.nextLine();
-                
-                sections.get(i).setSectionName(name);
-                System.out.println("Section updated successfully.");
+                sections.set(i, section);
+                System.out.println("Section record updated in system.");
                 found = true;
                 break;
             }
