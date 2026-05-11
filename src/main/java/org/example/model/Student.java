@@ -1,21 +1,28 @@
 package org.example.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Student extends Person{
     private String program;
     private Section sectionEnrolled;
+    private boolean isScholar;
+    private List<Course> passedCourses;
 
     public Student(){
-
+        this.passedCourses = new ArrayList<>();
     }
 
     public Student(String id, String name,String program){
         super(id, name);
         this.program = program;
+        this.passedCourses = new ArrayList<>();
     }
 
     public Student(String id, String name,String program, Section section){
         this(id, name, program);
         this.sectionEnrolled = section;
+        this.passedCourses = new ArrayList<>();
     }
 
     public String getProgram(){
@@ -34,6 +41,25 @@ public class Student extends Person{
         this.sectionEnrolled = section;
     }
 
+    public boolean isScholar() {
+        return isScholar;
+    }
+
+    public void setScholar(boolean scholar) {
+        isScholar = scholar;
+    }
+
+    public List<Course> getPassedCourses() {
+        return passedCourses;
+    }
+
+    public void setPassedCourses(List<Course> passedCourses) {
+        this.passedCourses = passedCourses;
+    }
+
+    public void addPassedCourse(Course course) {
+        this.passedCourses.add(course);
+    }
 
     @Override
     public void mainTask(){
@@ -42,16 +68,6 @@ public class Student extends Person{
 
 
 
-
-
-//    @Override
-//    public String toString() {
-//        return "Student{" +
-//                "studentID='" + studentID + '\'' +
-//                ", studentName='" + studentName + '\'' +
-//                ", program='" + program + '\'' +
-//                '}';
-//    }
 
 
 }

@@ -1,13 +1,13 @@
 package org.example.model;
 
 public class Course {
-    // courseID, courseName, Program
 
     private String courseID;
     private String courseName;
     private String program;
     private Instructor instructor;
     private Section assignedSection;
+    private Course prerequisite;
 
     public Course(){
 
@@ -64,18 +64,21 @@ public class Course {
         this.instructor = instructor;
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "courseID='" + courseID + '\'' +
-                ", courseName='" + courseName + '\'' +
-                ", program='" + program + '\'' +
-                '}';
+    public Course getPrerequisite() {
+        return prerequisite;
     }
+
+    public void setPrerequisite(Course prerequisite) {
+        this.prerequisite = prerequisite;
+    }
+
 
     public void displayCourse(){
         System.out.println("Course ID: " + getCourseID());
         System.out.println("Course Name: " + getCourseName());
         System.out.println("Course Program: " + getProgram());
+        if (prerequisite != null) {
+            System.out.println("Prerequisite: " + prerequisite.getCourseName());
+        }
     }
 }

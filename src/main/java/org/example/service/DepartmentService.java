@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.model.Course;
 import org.example.model.Department;
 import org.example.model.Instructor;
+import org.example.model.Section;
 import java.util.List;
 
 public interface DepartmentService {

@@ -78,6 +78,22 @@ public class SectionServiceImpl implements SectionService{
             return;
         }
 
+        for (Course course : section.getCourses()) {
+            if (course.getPrerequisite() != null) {
+                boolean canEnroll = false;
+                for (Course passedCourse : student.getPassedCourses()) {
+                    if (passedCourse.getCourseID().equals(course.getPrerequisite().getCourseID())) {
+                        canEnroll = true;
+                        break;
+                    }
+                }
+                if (!canEnroll) {
+                    System.out.println(course.getPrerequisite().getCourseName() + " for course: " + course.getCourseName());
+                    return;
+                }
+            }
+        }
+
         student.setSectionEnrolled(section);
         section.setCurrentCapacity(section.getCurrentCapacity() + 1);
         section.getEnrolledStudents().add(student);
